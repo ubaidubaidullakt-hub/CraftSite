@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>CraftSite — Download App</title>
+<meta name="description" content="Discover and download the CraftSite Android application.">
+
+<style>
+:root {
+  --bg: #080808;
+  --surface: #111111;
+  --surface2: #171717;
+  --text: #f7f7f7;
+  --muted: #999999;
+  --line: rgba(255,255,255,.09);
+  --accent: #ffffff;
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: white;
+  color: black;
+}
+
+/* Background */
+
+.background-glow {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,.07),
+    transparent 68%
+  );
+  top: -350px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Navigation */
+
+.nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1160px, calc(100% - 32px));
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  background: rgba(15,15,15,.78);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  backdrop-filter: blur(22px);
+  z-index: 100;
+  transition: .3s;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -.7px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: white;
+  color: black;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.nav-links a {
+  transition: color .2s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.nav-download {
+  background: white;
+  color: black;
+  padding: 11px 17px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform .2s, background .2s;
+}
+
+.nav-download:hover {
+  transform: translateY(-2px);
+  background: #ddd;
+}
+
+.menu-button {
+  display: none;
+  border: 1px solid var(--line);
+  background: var(--surface2);
+  color: white;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  font-size: 20px;
+}
+
+/* Hero */
+
+.hero {
+  min-height: 100vh;
+  max-width: 1160px;
+  margin: auto;
+  padding: 170px 24px 90px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.hero-content {
+  animation: fadeUp .9s both;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #aaa;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 15px white;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 6.5vw, 86px);
+  line-height: .98;
+  letter-spacing: -5px;
+  font-weight: 800;
+  margin-bottom: 26px;
+}
+
+.hero h1 span {
+  color: #777;
+}
+
+.hero-description {
+  color: var(--muted);
+  max-width: 460px;
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 34px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 17px 23px;
+  border: 0;
+  border-radius: 15px;
+  background: white;
+  color: black;
+  font-weight: 750;
+  font-size: 14px;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.button-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 45px rgba(255,255,255,.12);
+}
+
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 22px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  color: #ddd;
+  font-size: 14px;
+  transition: background .2s;
+}
+
+.button-secondary:hover {
+  background: var(--surface2);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  color: #777;
+  font-size: 12px;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+  animation: fadeIn 1.2s both;
+}
+
+.hero-card {
+  position: relative;
+  width: min(360px, 100%);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 45px;
+  background:
+    radial-gradient(circle at 50% 35%, #262626, transparent 65%),
+    linear-gradient(145deg, #151515, #090909);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 40px 120px rgba(0,0,0,.5);
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 34px;
+}
+
+.app-icon {
+  width: 145px;
+  height: 145px;
+  border-radius: 34px;
+  object-fit: cover;
+  background: #222;
+  box-shadow: 0 20px 70px rgba(0,0,0,.5);
+  position: relative;
+  z-index: 2;
+}
+
+.icon-placeholder {
+  display: grid;
+  place-items: center;
+  font-size: 65px;
+  font-weight: 900;
+  color: white;
+  background: linear-gradient(145deg, #292929, #101010);
+}
+
+.floating-tag {
+  position: absolute;
+  background: rgba(24,24,24,.9);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 12px;
+  color: #ccc;
+  backdrop-filter: blur(15px);
+  animation: float 5s ease-in-out infinite;
+}
+
+.tag-top {
+  top: 55px;
+  right: -12px;
+}
+
+.tag-bottom {
+  bottom: 65px;
+  left: -18px;
+  animation-delay: -2s;
+}
+
+.tag-strong {
+  color: white;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* General sections */
+
+.section {
+  max-width: 1160px;
+  margin: auto;
+  padding: 110px 24px;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 55px;
+}
+
+.section-label {
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  font-size: clamp(34px, 5vw, 58px);
+  letter-spacing: -2.5px;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* Features */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg, #151515, #0c0c0c);
+  border-radius: 22px;
+  padding: 28px;
+  min-height: 190px;
+  transition: transform .3s, border-color .3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255,255,255,.25);
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #222;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.feature-card h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  color: #888;
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+/* Gallery */
+
+.gallery-section {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #0b0b0b;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.screenshot-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #151515;
+  border-radius: 20px;
+  aspect-ratio: 9 / 16;
+  cursor: zoom-in;
+  transition: transform .3s, border-color .3s;
+}
+
+.screenshot-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,.3);
+}
+
+.screenshot-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform .5s;
+}
+
+.screenshot-card:hover img {
+  transform: scale(1.035);
+}
+
+.screenshot-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 24px 18px 18px;
+  background: linear-gradient(transparent, rgba(0,0,0,.8));
+  font-size: 12px;
+  color: white;
+  opacity: 0;
+  transition: opacity .25s;
+}
+
+.screenshot-card:hover .screenshot-overlay {
+  opacity: 1;
+}
+
+.empty-gallery {
+  text-align: center;
+  padding: 45px 20px;
+  border: 1px dashed #333;
+  border-radius: 20px;
+  color: #777;
+  grid-column: 1 / -1;
+  line-height: 1.8;
+}
+
+/* App information */
+
+.info-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 42px;
+  background: linear-gradient(145deg, #171717, #0d0d0d);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+}
+
+.info-app {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.info-app img {
+  width: 78px;
+  height: 78px;
+  border-radius: 22px;
+  object-fit: cover;
+  background: #222;
+}
+
+.info-app h3 {
+  font-size: 24px;
+  letter-spacing: -.8px;
+  margin-bottom: 8px;
+}
+
+.info-app p {
+  color: #888;
+  font-size: 13px;
+}
+
+.info-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.info-item {
+  padding: 18px;
+  background: #111;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.info-item small {
+  display: block;
+  color: #777;
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+
+.info-item strong {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.info-download {
+  grid-column: 1 / -1;
+}
+
+/* Installation */
+
+.install-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.install-step {
+  padding: 23px 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 18px;
+}
+
+.step-number {
+  color: #777;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.install-step h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.install-step p {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.7;
+}
+
+/* Update */
+
+.update-card {
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 22px;
+  max-width: 750px;
+  margin: auto;
+}
+
+.update-card h3 {
+  margin-bottom: 14px;
+}
+
+.update-card p {
+  color: #999;
+  line-height: 1.8;
+}
+
+/* Footer */
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 35px 24px;
+}
+
+.footer-inner {
+  max-width: 1160px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  color: #777;
+  font-size: 12px;
+}
+
+.footer-brand {
+  color: white;
+  font-weight: 700;
+}
+
+/* Viewer */
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0,0,0,.96);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(20px);
+}
+
+.viewer.active {
+  display: flex;
+  animation: fadeIn .2s both;
+}
+
+.viewer-image-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  touch-action: none;
+}
+
+.viewer-image {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center;
+  cursor: grab;
+}
+
+.viewer-image:active {
+  cursor: grabbing;
+}
+
+.viewer-top {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.viewer-counter {
+  color: #aaa;
+  font-size: 13px;
+  background: #181818;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+
+.viewer-controls {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+  background: #171717;
+  border: 1px solid var(--line);
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.viewer-button {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 11px;
+  background: #242424;
+  color: white;
+  font-size: 18px;
+  transition: background .2s;
+}
+
+.viewer-button:hover {
+  background: #383838;
+}
+
+.viewer-close {
+  background: #252525;
+  color: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+/* Scroll animations */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .8s, transform .8s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-13px); }
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+    padding-top: 150px;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions,
+  .hero-meta {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 370px;
+  }
+
+  .hero-card {
+    width: 310px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .install-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .info-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .nav {
+    height: 60px;
+    padding: 0 14px;
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .nav-download {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px;
+    background: #111;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+  }
+
+  .nav-links.open {
+    display: flex;
+    animation: fadeUp .2s both;
+  }
+
+  .nav-links a {
+    padding: 14px;
+  }
+
+  .hero {
+    padding: 130px 20px 60px;
+  }
+
+  .hero h1 {
+    letter-spacing: -3px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-visual {
+    min-height: 300px;
+  }
+
+  .hero-card {
+    width: 260px;
+    border-radius: 32px;
+  }
+
+  .app-icon {
+    width: 110px;
+    height: 110px;
+    border-radius: 27px;
+  }
+
+  .tag-top {
+    right: -4px;
+    top: 20px;
+  }
+
+  .tag-bottom {
+    left: -4px;
+    bottom: 20px;
+  }
+
+  .section {
+    padding: 75px 20px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .screenshot-card {
+    border-radius: 14px;
+  }
+
+  .info-card {
+    padding: 22px;
+  }
+
+  .info-app img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .info-app h3 {
+    font-size: 19px;
+  }
+
+  .info-details {
+    gap: 9px;
+  }
+
+  .info-item {
+    padding: 14px;
+  }
+
+  .install-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .viewer-image {
+    max-width: 96vw;
+    max-height: 80vh;
+  }
+
+  .viewer-controls {
+    bottom: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+
+<header class="nav">
+  <a href="#home" class="brand">
+    <span class="brand-mark">C</span>
+    CraftSite
+  </a>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#information">App Info</a>
+    <a href="#installation">Installation</a>
+  </nav>
+
+  <a href="#download" class="nav-download">Download App ↗</a>
+  <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Android Application
+    </div>
+
+    <h1>
+      Your next<br>
+      <span>favorite app.</span>
+    </h1>
+
+    <p class="hero-description" id="appDescription">
+      A simple, modern application designed to deliver a smooth and
+      enjoyable experience.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#download" class="button-primary">
+        Download APK <span>↓</span>
+      </a>
+
+      <a href="#screenshots" class="button-secondary">
+        Explore App
+      </a>
+    </div>
+
+    <div class="hero-meta">
+      <span>◈ Android APK</span>
+      <span id="heroVersion">Version 1.0</span>
+      <span id="heroSize">Checking size...</span>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <img src="app.png" alt="Application icon"
+           class="app-icon icon-placeholder" id="heroIcon"
+           onerror="this.style.display='none';document.getElementById('heroIconFallback').style.display='grid'">
+
+      <div class="app-icon icon-placeholder" id="heroIconFallback"
+           style="display:none">C</div>
+
+      <div class="floating-tag tag-top">
+        <span class="tag-strong">Android Ready</span>
+        APK Download
+      </div>
+
+      <div class="floating-tag tag-bottom">
+        <span class="tag-strong" id="floatingVersion">Version 1.0</span>
+        Latest Release
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+
+<section class="section reveal" id="features">
+  <div class="section-heading">
+    <div class="section-label">What you'll get</div>
+    <h2>Made for a better<br>experience.</h2>
+    <p>
+      Discover the features of the application and what makes it useful.
+    </p>
+  </div>
+
+  <div class="features-grid" id="featuresGrid"></div>
+</section>
+
+<!-- SCREENSHOTS -->
+
+<section class="gallery-section" id="screenshots">
+  <div class="section reveal">
+    <div class="section-heading">
+      <div class="section-label">Inside the application</div>
+      <h2>A closer look.</h2>
+      <p>
+        Explore the application interface. Tap any screenshot to view it
+        in full screen.
+      </p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="empty-gallery">
+        Screenshots will appear here automatically.<br>
+        Add screenshot1.png, screenshot2.png, and more.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP INFORMATION -->
+
+<section class="section reveal" id="information">
+  <div class="section-heading">
+    <div class="section-label">Application details</div>
+    <h2>Everything you need.</h2>
+    <p>Application information and download details.</p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-app">
+      <img src="app.png" alt="App icon"
+           id="infoIcon"
+           onerror="this.style.display='none'">
+
+      <div>
+        <h3 id="appName">CraftSite App</h3>
+        <p>Android Application</p>
+      </div>
+    </div>
+
+    <div class="info-details">
+      <div class="info-item">
+        <small>Version</small>
+        <strong id="infoVersion">1.0</strong>
+      </div>
+
+      <div class="info-item">
+        <small>File Size</small>
+        <strong id="infoSize">Checking...</strong>
+      </div>
+
+      <div class="info-item">
+        <small>File Format</small>
+        <strong>Android APK</strong>
+      </div>
+
+      <div class="info-item">
+        <small>Platform</small>
+        <strong>Android</strong>
+      </div>
+
+      <div class="info-download">
+        <a href="CraftSite.apk" class="button-primary"
+           id="downloadButton" download>
+          Download CraftSite.apk ↓
+        </a>
+        <p id="downloadStatus"
+           style="color:#777;font-size:12px;margin-top:12px">
+          APK file availability will be checked automatically.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALLATION -->
+
+<section class="section reveal" id="installation">
+  <div class="section-heading">
+    <div class="section-label">Getting started</div>
+    <h2>Install in minutes.</h2>
+    <p>Follow these simple steps to install the Android application.</p>
+  </div>
+
+  <div class="install-steps">
+    <div class="install-step">
+      <div class="step-number">01 / DOWNLOAD</div>
+      <h3>Download APK</h3>
+      <p>Tap the download button and save the APK file.</p>
+    </div>
+
+    <div class="install-step">
+      <div class="step-number">02 / OPEN</div>
+      <h3>Open the file</h3>
+      <p>Find the downloaded APK in your Downloads folder.</p>
+    </div>
+
+    <div class="install-step">
+      <div class="step-number">03 / PERMISSION</div>
+      <h3>Allow installation</h3>
+      <p>If Android asks, allow installation from that source.</p>
+    </div>
+
+    <div class="install-step">
+      <div class="step-number">04 / INSTALL</div>
+      <h3>Install app</h3>
+      <p>Follow the Android installation screen.</p>
+    </div>
+
+    <div class="install-step">
+      <div class="step-number">05 / ENJOY</div>
+      <h3>Open the app</h3>
+      <p>Launch the app and start using it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UPDATE -->
+
+<section class="section reveal" id="updateSection" style="display:none">
+  <div class="section-heading">
+    <div class="section-label">What's new</div>
+    <h2>Latest update.</h2>
+  </div>
+
+  <div class="update-card">
+    <h3 id="updateTitle"></h3>
+    <p id="updateDetails"></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">CraftSite</div>
+    <div>Single application. Simple download.</div>
+    <div>© <span id="year"></span> CraftSite</div>
+  </div>
+</footer>
+
+<!-- SCREENSHOT VIEWER -->
+
+<div class="viewer" id="viewer" aria-modal="true" role="dialog">
+  <div class="viewer-top">
+    <div class="viewer-counter" id="viewerCounter">1 / 1</div>
+    <button class="viewer-close" id="viewerClose">✕ Close</button>
+  </div>
+
+  <div class="viewer-image-wrap" id="viewerWrap">
+    <img class="viewer-image" id="viewerImage" alt="Application screenshot">
+  </div>
+
+  <div class="viewer-controls">
+    <button class="viewer-button" id="previousImage" aria-label="Previous">‹</button>
+    <button class="viewer-button" id="zoomOut" aria-label="Zoom out">−</button>
+    <button class="viewer-button" id="resetZoom" aria-label="Reset zoom">⟳</button>
+    <button class="viewer-button" id="zoomIn" aria-label="Zoom in">+</button>
+    <button class="viewer-button" id="nextImage" aria-label="Next">›</button>
+  </div>
+</div>
+
+<script>
+/* =========================================
+   CRAFTSITE CONFIGURATION
+   Edit these settings for your application.
+========================================= */
+
+const CONFIG = {
+  appName: "CraftSite App",
+  description:
+    "A simple, modern application designed to deliver a smooth and enjoyable experience.",
+
+  version: "1.0",
+
+  apkFile: "CraftSite.apk",
+  iconFile: "app.png",
+
+  // Add your real app features here.
+  features: [
+    {
+      icon: "✦",
+      title: "Simple Experience",
+      description: "A clean and easy-to-use application interface."
+    },
+    {
+      icon: "⚡",
+      title: "Fast & Smooth",
+      description: "Designed to provide a responsive user experience."
+    },
+    {
+      icon: "◈",
+      title: "Android Application",
+      description: "Install the application directly on your Android device."
+    }
+  ],
+
+  // Optional update information.
+  // Leave title or details empty to hide this section.
+  update: {
+    title: "",
+    details: ""
+  }
+};
+
+/* =========================================
+   APP CONFIGURATION
+========================================= */
+
+document.title = CONFIG.appName + " — CraftSite";
+
+document.getElementById("appName").textContent = CONFIG.appName;
+document.getElementById("appDescription").textContent = CONFIG.description;
+
+document.getElementById("heroVersion").textContent =
+  "Version " + CONFIG.version;
+
+document.getElementById("floatingVersion").textContent =
+  "Version " + CONFIG.version;
+
+document.getElementById("infoVersion").textContent = CONFIG.version;
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("heroIcon").src = CONFIG.iconFile;
+document.getElementById("infoIcon").src = CONFIG.iconFile;
+
+/* =========================================
+   FEATURES
+========================================= */
+
+const featuresGrid = document.getElementById("featuresGrid");
+
+if (CONFIG.features.length) {
+  featuresGrid.innerHTML = CONFIG.features.map(feature => `
+    <article class="feature-card">
+      <div class="feature-icon">${feature.icon}</div>
+      <h3>${escapeHTML(feature.title)}</h3>
+      <p>${escapeHTML(feature.description)}</p>
+    </article>
+  `).join("");
+} else {
+  document.getElementById("features").style.display = "none";
+}
+
+/* =========================================
+   UPDATE SECTION
+========================================= */
+
+if (CONFIG.update.title && CONFIG.update.details) {
+  document.getElementById("updateSection").style.display = "block";
+  document.getElementById("updateTitle").textContent = CONFIG.update.title;
+  document.getElementById("updateDetails").textContent = CONFIG.update.details;
+}
+
+/* =========================================
+   APK FILE SIZE + DOWNLOAD CHECK
+========================================= */
+
+async function checkAPK() {
+  const sizeElements = [
+    document.getElementById("infoSize"),
+    document.getElementById("heroSize")
+  ];
+
+  const status = document.getElementById("downloadStatus");
+  const button = document.getElementById("downloadButton");
+
+  try {
+    const response = await fetch(CONFIG.apkFile, {
+      method: "HEAD",
+      cache: "no-store"
+    });
+
+    if (!response.ok) throw new Error("APK missing");
+
+    const size = Number(response.headers.get("content-length"));
+
+    if (size > 0) {
+      const formatted = formatBytes(size);
+      sizeElements.forEach(element => element.textContent = formatted);
+    } else {
+      sizeElements.forEach(element => element.textContent = "Available");
+    }
+
+    status.textContent = "APK file is available for download.";
+    button.href = CONFIG.apkFile;
+    button.setAttribute("download", CONFIG.apkFile);
+
+  } catch (error) {
+    sizeElements.forEach(element => element.textContent = "Not added yet");
+
+    status.textContent =
+      "Add " + CONFIG.apkFile + " to the website folder to enable downloads.";
+
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      alert("The APK file has not been added yet.");
+    }, { once: true });
+  }
+}
+
+function formatBytes(bytes) {
+  if (bytes === 0) return "0 Bytes";
+
+  const units = ["Bytes", "KB", "MB", "GB"];
+  const index = Math.floor(Math.log(bytes) / Math.log(1024));
+
+  return (bytes / Math.pow(1024, index)).toFixed(2) + " " + units[index];
+}
+
+/* =========================================
+   AUTOMATIC SCREENSHOT DISCOVERY
+
+   Static HTML cannot list a directory directly.
+   This checks numbered screenshot filenames
+   and displays files that actually exist.
+
+   For Vercel static deployment, place the
+   screenshots beside index.html.
+========================================= */
+
+const galleryGrid = document.getElementById("galleryGrid");
+const screenshots = [];
+
+async function discoverScreenshots() {
+  galleryGrid.innerHTML = "";
+
+  // Practical scan limit; no gallery entries need
+  // to be manually written in the HTML.
+  const maximum = 300;
+
+  const checks = [];
+
+  for (let i = 1; i <= maximum; i++) {
+    checks.push(checkScreenshot(i));
+  }
+
+  await Promise.all(checks);
+
+  screenshots.sort((a, b) => a.number - b.number);
+
+  if (!screenshots.length) {
+    galleryGrid.innerHTML = `
+      <div class="empty-gallery">
+        No screenshots found yet.<br>
+        Add screenshot1.png, screenshot2.png, and more.
+      </div>
+    `;
+    return;
+  }
+
+  screenshots.forEach((screenshot, index) => {
+    const card = document.createElement("button");
+    card.className = "screenshot-card";
+    card.setAttribute("aria-label", "View screenshot " + screenshot.number);
+
+    card.innerHTML = `
+      <img src="${screenshot.src}"
+           alt="Application screenshot ${screenshot.number}"
+           loading="lazy">
+      <div class="screenshot-overlay">
+        Screenshot ${screenshot.number} · View
+      </div>
+    `;
+
+    card.addEventListener("click", () => openViewer(index));
+    galleryGrid.appendChild(card);
+  });
+}
+
+async function checkScreenshot(number) {
+  const src = "screenshot" + number + ".png";
+
+  try {
+    const response = await fetch(src, {
+      method: "HEAD",
+      cache: "no-store"
+    });
+
+    if (response.ok) {
+      screenshots.push({
+        number,
+        src
+      });
+    }
+  } catch (error) {
+    // Missing screenshot: skip it.
+  }
+}
+
+/* =========================================
+   SCREENSHOT VIEWER
+========================================= */
+
+const viewer = document.getElementById("viewer");
+const viewerImage = document.getElementById("viewerImage");
+const viewerCounter = document.getElementById("viewerCounter");
+const viewerWrap = document.getElementById("viewerWrap");
+
+let currentIndex = 0;
+let zoom = 1;
+let panX = 0;
+let panY = 0;
+
+function openViewer(index) {
+  currentIndex = index;
+  zoom = 1;
+  panX = 0;
+  panY = 0;
+
+  updateViewer();
+
+  viewer.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeViewer() {
+  viewer.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function updateViewer() {
+  if (!screenshots.length) return;
+
+  viewerImage.src = screenshots[currentIndex].src;
+
+  viewerCounter.textContent =
+    (currentIndex + 1) + " / " + screenshots.length;
+
+  resetViewerTransform();
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % screenshots.length;
+  updateViewer();
+}
+
+function previousImage() {
+  currentIndex =
+    (currentIndex - 1 + screenshots.length) % screenshots.length;
+
+  updateViewer();
+}
+
+function applyTransform() {
+  viewerImage.style.transform =
+    `translate(${panX}px, ${panY}px) scale(${zoom})`;
+}
+
+function resetViewerTransform() {
+  zoom = 1;
+  panX = 0;
+  panY = 0;
+  applyTransform();
+}
+
+function changeZoom(amount) {
+  zoom = Math.max(.5, Math.min(5, zoom + amount));
+  applyTransform();
+}
+
+document.getElementById("viewerClose").addEventListener("click", closeViewer);
+document.getElementById("nextImage").addEventListener("click", nextImage);
+document.getElementById("previousImage").addEventListener("click", previousImage);
+document.getElementById("zoomIn").addEventListener("click", () => changeZoom(.25));
+document.getElementById("zoomOut").addEventListener("click", () => changeZoom(-.25));
+document.getElementById("resetZoom").addEventListener("click", resetViewerTransform);
+
+viewer.addEventListener("click", event => {
+  if (event.target === viewer) closeViewer();
+});
+
+/* Keyboard navigation */
+
+document.addEventListener("keydown", event => {
+  if (!viewer.classList.contains("active")) return;
+
+  if (event.key === "Escape") closeViewer();
+  if (event.key === "ArrowRight") nextImage();
+  if (event.key === "ArrowLeft") previousImage();
+  if (event.key === "+" || event.key === "=") changeZoom(.25);
+  if (event.key === "-") changeZoom(-.25);
+  if (event.key === "0") resetViewerTransform();
+});
+
+/* Mouse wheel zoom */
+
+viewerWrap.addEventListener("wheel", event => {
+  if (!viewer.classList.contains("active")) return;
+
+  event.preventDefault();
+  changeZoom(event.deltaY < 0 ? .15 : -.15);
+}, { passive: false });
+
+/* Drag to pan */
+
+let dragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let initialPanX = 0;
+let initialPanY = 0;
+
+viewerImage.addEventListener("pointerdown", event => {
+  if (zoom <= 1) return;
+
+  dragging = true;
+
+  dragStartX = event.clientX;
+  dragStartY = event.clientY;
+
+  initialPanX = panX;
+  initialPanY = panY;
+
+  viewerImage.setPointerCapture(event.pointerId);
+});
+
+viewerImage.addEventListener("pointermove", event => {
+  if (!dragging) return;
+
+  panX = initialPanX + event.clientX - dragStartX;
+  panY = initialPanY + event.clientY - dragStartY;
+
+  applyTransform();
+});
+
+viewerImage.addEventListener("pointerup", () => dragging = false);
+viewerImage.addEventListener("pointercancel", () => dragging = false);
+
+/* Touch pinch zoom */
+
+let initialPinchDistance = null;
+let initialPinchZoom = 1;
+
+function getTouchDistance(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+viewerWrap.addEventListener("touchstart", event => {
+  if (event.touches.length === 2) {
+    initialPinchDistance = getTouchDistance(event.touches);
+    initialPinchZoom = zoom;
+  }
+}, { passive: true });
+
+viewerWrap.addEventListener("touchmove", event => {
+  if (event.touches.length === 2 && initialPinchDistance) {
+    event.preventDefault();
+
+    const distance = getTouchDistance(event.touches);
+
+    zoom = Math.max(
+      .5,
+      Math.min(5, initialPinchZoom * distance / initialPinchDistance)
+    );
+
+    applyTransform();
+  }
+}, { passive: false });
+
+viewerWrap.addEventListener("touchend", () => {
+  initialPinchDistance = null;
+});
+
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
+
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
+
+menuButton.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+
+  menuButton.textContent =
+    navLinks.classList.contains("open") ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuButton.textContent = "☰";
+  });
+});
+
+/* =========================================
+   SCROLL REVEAL ANIMATIONS
+========================================= */
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: .12
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+/* =========================================
+   HELPERS
+========================================= */
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[character]);
+}
+
+/* =========================================
+   START WEBSITE
+========================================= */
+
+checkAPK();
+discoverScreenshots();
+</script>
+
+</body>
+</html>
